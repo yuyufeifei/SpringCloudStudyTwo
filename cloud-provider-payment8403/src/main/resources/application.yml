@@ -1,0 +1,79 @@
+server:
+  port: 8403
+spring:
+  application:
+    name: provider-payment
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/springcloud?useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 此时数据源用的默认com.zaxxer.hikari.HikariDataSource
+
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      filters: stat
+      #最大连接池数量
+      max-active: 200
+      #初始化时建立物理连接的个数
+      initial-size: 5
+      #获取连接时最大等待时间，单位毫秒
+      max-wait: 60000
+      #最小连接池数量
+      min-idle: 5
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 1
+      #validation-query: select 1 from dual
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      #是否缓存preparedStatement
+      pool-prepared-statements: false
+      #要启用PSCache，必须配置大于0
+      #      max-open-prepared-statements: 200
+      # 指定每个连接上 PSCache 的大小
+      #      max-pool-prepared-statement-per-connection-size: 20
+      break-after-acquire-failure: true
+      time-between-connect-error-millis: 300000
+      # 通过 connection-properties 属性打开 mergeSql 功能；慢 SQL 记录
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+      # 下面3个enabled改为true即开启druid monitor
+      filter:
+        config:
+          enabled: true
+      # 配置 DruidStatFilter
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: .js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*
+      # 配置 DruidStatViewServlet
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        # IP 白名单，没有配置或者为空，则允许所有访问
+        allow:
+        # IP 黑名单，若白名单也存在，则优先使用
+        deny:
+        # 禁用 HTML 中 Reset All 按钮
+        reset-enable: false
+        # 登录用户名/密码
+        login-username: root
+        login-password: 123
+mybatis:
+  type-aliases-package: com.gzh.springcloud.entities
+  mapper-locations: classpath:mybatis/mapper/*.xml
+eureka:
+  client:
+    service-url:
+#      单机配置
+#      defaultZone: http://eureka8411:8411/eureka
+      #集群配置
+      defaultZone: http://eureka8411:8411/eureka,http://eureka8412:8412/eureka,http://eureka8413:8413/eureka
+  instance:
+#    使用ip
+    prefer-ip-address: true
+#    ip-address: 127.0.0.1
+#    hostname: localhost
+#    instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
+    instance-id: ${spring.application.name}:${server.port}

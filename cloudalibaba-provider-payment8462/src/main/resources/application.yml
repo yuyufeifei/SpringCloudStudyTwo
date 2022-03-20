@@ -1,0 +1,16 @@
+server:
+  port: 8462
+spring:
+  application:
+    name: nacos-provider-payment
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

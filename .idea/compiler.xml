@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="cloud-eureka-server8412" />
+        <module name="cloud-eureka-server8413" />
+        <module name="cloud-config-server8431" />
+        <module name="cloud-config-client8433" />
+        <module name="cloud-eureka-server8411" />
+        <module name="cloud-provider-payment-consul8405" />
+        <module name="cloud-provider-payment-zk8404" />
+        <module name="cloud-consumer-order-zk80" />
+        <module name="cloud-config-client8432" />
+        <module name="cloud-provider-payment-hystrix8406" />
+        <module name="cloud-gateway-gateway8448" />
+        <module name="cloudalibaba-provider-payment8462" />
+        <module name="cloud-consumer-hystrix-dashboard8421" />
+        <module name="cloudalibaba-config-client8475" />
+        <module name="cloud-provider-payment8403" />
+        <module name="cloudalibaba-seata-storage8492" />
+        <module name="cloud-provider-payment8402" />
+        <module name="cloudalibaba-provider-payment8461" />
+        <module name="cloud-provider-payment8401" />
+        <module name="cloud-stream-rabbitmq-provider8451" />
+        <module name="cloud-api-commons" />
+        <module name="cloudalibaba-consumer-order8471" />
+        <module name="cloud-consumer-order-consul80" />
+        <module name="cloudalibaba-seata-order8493" />
+        <module name="cloudalibaba-sentinel-service8481" />
+        <module name="cloud-stream-rabbitmq-consumer8452" />
+        <module name="cloud-consumer-order-feign80" />
+        <module name="cloud-stream-rabbitmq-consumer8453" />
+        <module name="cloudalibaba-seata-account8494" />
+        <module name="cloud-consumer-order80" />
+        <module name="cloudalibaba-seata-business8491" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cloud-provider-payment8404" target="8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

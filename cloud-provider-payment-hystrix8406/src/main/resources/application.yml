@@ -1,0 +1,13 @@
+server:
+  port: 8406
+spring:
+  application:
+    name: provider-payment-hystrix
+eureka:
+  client:
+    service-url:
+      #集群配置
+      defaultZone: http://eureka8411:8411/eureka,http://eureka8412:8412/eureka,http://eureka8413:8413/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}

@@ -1,0 +1,27 @@
+server:
+  port: 8481
+spring:
+  application:
+    name: sentinel-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8480
+        port: 8719    #默认位8719，如被占用会自动+1寻找
+      datasource:     #持久化
+        ds1:
+          nacos:    # 在nacos配置管理中增加配置Data ID为sentinel-service，Group为DEFAULT_GROUP，配置格式为json
+            server-addr: localhost:8848
+            data-id: ${spring.application.name}
+            group-id: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

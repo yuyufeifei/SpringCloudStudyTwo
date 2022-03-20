@@ -1,0 +1,20 @@
+server:
+  port: 80
+spring:
+  application:
+    name: consumer-order-feign
+eureka:
+  client:
+    register-with-eureka: false   #不向Eureka注册中心注册
+    service-url:
+      #      单机配置
+      #      defaultZone: http://eureka8411:8411/eureka
+      #集群配置
+      defaultZone: http://eureka8411:8411/eureka,http://eureka8412:8412/eureka,http://eureka8413:8413/eureka
+
+# 开启服务降级 测试时，只开启Eureka服务和此服务
+# 访问此服务http://localhost/consumer/payment/2会得到{"code":6000,"msg":"前方拥挤。","data":null}
+# 也可开启服务提供者，然后访问timeout
+feign:
+  circuitbreaker:
+    enabled: true

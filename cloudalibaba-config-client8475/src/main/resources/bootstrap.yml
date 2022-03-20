@@ -1,0 +1,17 @@
+server:
+  port: 8475
+spring:
+  application:
+    name: nacos-config-client
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        # 命名空间使用：先在控制台新建命名空间，将生成的ID填至此，然后在控制台选择新建的命名空间，增加配置
+#        namespace: 73ac28c7-7911-4c73-905a-98df307e681c
+#        group: 自定义的group
+
+# ${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}

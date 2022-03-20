@@ -1,0 +1,29 @@
+server:
+  port: 8432
+spring:
+  application:
+    name: cloud-config-client
+  cloud:
+    config:
+      label: master
+      name: configclient
+      profile: dev
+      uri: http://localhost:8431
+  rabbitmq:   # RabbitMQ相关配置
+    host: localhost     #默认就是localhost
+    port: 5672
+    username: guest     #默认就是guest
+    password: guest     #默认就是guest
+eureka:
+  client:
+    service-url:
+      #集群配置
+      defaultZone: http://eureka8411:8411/eureka,http://eureka8412:8412/eureka,http://eureka8413:8413/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"    #自动刷新配置需添加

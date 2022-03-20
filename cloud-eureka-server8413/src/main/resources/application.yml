@@ -1,0 +1,17 @@
+server:
+  port: 8413
+spring:
+  application:
+    name: eureka-server-8413
+
+eureka:
+  instance:
+    hostname: eureka8413
+  client:
+    register-with-eureka: false   #表示是否向Eureka注册中心注册自己
+    fetch-registry: false   #表示自己为注册中心
+    service-url:
+#      单机配置
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      #集群
+      defaultZone: http://eureka8411:8411/eureka,http://eureka8412:8412/eureka

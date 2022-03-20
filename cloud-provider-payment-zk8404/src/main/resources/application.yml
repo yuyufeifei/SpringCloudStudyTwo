@@ -1,0 +1,8 @@
+server:
+  port: 8404
+spring:
+  application:
+    name: provider-payment-zk
+  cloud:
+    zookeeper:
+      connect-string: 127.0.0.1:2181

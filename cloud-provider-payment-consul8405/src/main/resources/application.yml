@@ -1,0 +1,14 @@
+server:
+  port: 8405
+spring:
+  application:
+    name: provider-payment-consul
+  cloud:
+    consul:
+      discovery:
+        hostname: 127.0.0.1
+        port: 8500
+        service-name: ${spring.application.name}
+        heartbeat:
+          enabled: true
+#        prefer-ip-address: true

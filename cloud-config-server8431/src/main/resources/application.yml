@@ -1,0 +1,51 @@
+server:
+  port: 8431
+spring:
+  application:
+    name: cloud-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/yuyufeifei/springcloudtwo-config.git
+#          search-paths: springcloudtwo-config
+#      label: master
+
+#测试：在码云上创建仓库springcloudtwo-config，之后建两个文件configserver-dev.yml、configserver-prod.yml
+#访问即可看到对应内容 http://192.168.137.1:8431/master/configserver-dev.yml
+#                 http://192.168.137.1:8431/master/configserver-prod.yml
+#                 http://192.168.137.1:8431/configserver-dev.yml
+#                 http://192.168.137.1:8431/configserver-prod.yml
+#   访问格式如下：https://docs.spring.io/spring-cloud-config/docs/2.2.8.RELEASE/reference/html/#_quick_start
+#     /{application}/{profile}[/{label}]
+#     /{application}-{profile}.yml
+#     /{label}/{application}-{profile}.yml
+#     /{application}-{profile}.properties
+#     /{label}/{application}-{profile}.properties
+
+  # RabbitMQ相关配置
+  rabbitmq:
+    host: localhost     #默认就是localhost
+    port: 5672
+    username: guest     #默认就是guest
+    password: guest     #默认就是guest
+
+eureka:
+  client:
+    service-url:
+      #集群配置
+      defaultZone: http://eureka8411:8411/eureka,http://eureka8412:8412/eureka,http://eureka8413:8413/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+
+# RabbitMQ相关配置，暴露Bus刷新位置的端点
+# 测试：添加Bus和RabbitMQ之后，在gitee修改配置后，用curl命令发送 curl -X POST "http://localhost:8431/actuator/bus-refresh"
+# 配置通过Bus和RabbitMQ更新给cloud-config-client8432和cloud-config-client8433
+# 如果只让其中一个刷新，用curl命令发送 curl -X POST "http://localhost:8431/actuator/bus-refresh/{spring.application.name}:{server.port}
+# curl -X POST "http://localhost:8431/actuator/bus-refresh/cloud-config-client:8432"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "bus-refresh"

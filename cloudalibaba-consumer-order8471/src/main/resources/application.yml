@@ -1,0 +1,27 @@
+server:
+  port: 8471
+spring:
+  application:
+    name: nacos-consumer-order
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8480
+        port: 8719    #默认位8719，如被占用会自动+1寻找
+feign:
+  sentinel:
+    enabled: true   #激活Sentinel对Feign的支持
+
+service-url:    #自定义的属性  要访问的服务名
+  nacos-user-service: http://nacos-provider-payment
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
